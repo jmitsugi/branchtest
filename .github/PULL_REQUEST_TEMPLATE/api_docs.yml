@@ -1,0 +1,49 @@
+name: API Docs
+description: APIドキュメントの更新時のPull Requestテンプレートです。
+labels: ["backend"]
+title: "[API Issue]"
+body:
+  - type: markdown
+    id: notice
+    attributes:
+      value: |
+        起票する際に、以下の設定も合わせて実施するようにお願いします。
+        - Assignees(必須):作業実施者を指定する
+        - labels(任意):ER図を同時に修正する場合は、`ER`ラベルを付与する
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Pull Requestの要約
+      description: Pull Requestの要約を記載してください。
+      placeholder: |
+        例:
+        - fix #707 GETのクエリパラメータにwithDeletedを追加
+
+  - type: textarea
+    id: feature_ids
+    attributes:
+      label: API仕様書修正対象機能
+      description: 修正対象となるAPI機能IDを記載してください。
+      placeholder: |
+        例:
+        - CR1_A005
+        - CR1_A006
+
+  - type: textarea
+    id: change_details
+    attributes:
+      label: API仕様書修正内容
+      description: 修正内容を詳細に記載してください。機能ごとに見出しをつけて記載してください。
+      placeholder: |
+        例:
+        ### 全体
+        - PUT、POSTのレスポンスの形式を、GETと同じものから、主に登録・更新するエンティティそのままの形で返すように修正。
+
+        ### CR1_A005_金融機関取引状況推移（GET）
+        - レスポンスパラメータ名修正
+          - settlementDate　→　settlementYm
+          - discountedNotes　→　commercialBill
+        - GETのクエリパラメータから金融機関コードを削除
+        - シェアはパーセント単位で返却するよう修正
+        - 預貸率はパーセント単位で登録/更新するよう修正
